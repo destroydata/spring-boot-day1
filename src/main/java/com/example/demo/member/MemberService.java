@@ -1,5 +1,6 @@
 package com.example.demo.member;
 
+import com.example.demo.exception.MemberNotFound;
 import com.example.demo.store.Store;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class MemberService {
 //        Member member = new Member();
 //        if(first.isPresent()) member = first.get();
 //       Member member = first.orElse(new Member());
-        Member member = first.orElseThrow(NullPointerException::new);
+        Member member = first.orElseThrow(()->
+                new MemberNotFound("사람을 못찾았어요", "findById", id));
         return member;
     }
     public void save(Member member){
