@@ -3,6 +3,7 @@ package com.example.demo.member;
 import com.example.demo.hobby.Hobby;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,20 @@ public class MemberResponse {
 //        }
         this.hobbies = member.getHobbies()
                 .stream()
-                .map(m -> new HobbyDto(m.getId(), m.getName()))
+                .map(HobbyDto::new)
                 .toList();
 
     }
-    @Getter @AllArgsConstructor
+    @Getter @AllArgsConstructor @NoArgsConstructor
     class HobbyDto{
         private Integer id;
         private String name;
+        public HobbyDto(Hobby hobby){
+            this.id = hobby.getId();
+            this.name = hobby.getName();
+        }
+        public HobbyDto toDto(Hobby hobby){
+            return new HobbyDto(hobby.getId(), hobby.getName());
+        }
     }
 }

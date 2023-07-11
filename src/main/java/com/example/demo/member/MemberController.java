@@ -20,8 +20,8 @@ public class MemberController {
         return memberService.findAll();
     }
     @GetMapping("{id}")
-    public Member findById(@PathVariable("id") Integer id){
-        return memberService.findById(id);
+    public MemberResponse findById(@PathVariable("id") Integer id){
+        return new MemberResponse(memberService.findById(id));
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,7 +29,7 @@ public class MemberController {
         memberService.save(member.toEntity());
     }
     @PutMapping("{id}")
-    public Member update(@PathVariable("id") Integer id
+    public MemberResponse update(@PathVariable("id") Integer id
             , @RequestBody MemberRequest request){
         return memberService.update(id, request);
     }
