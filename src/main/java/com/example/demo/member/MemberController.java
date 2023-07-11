@@ -16,7 +16,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping
-    public List<Member> findAll(){
+    public List<MemberResponse> findAll(){
         return memberService.findAll();
     }
     @GetMapping("{id}")

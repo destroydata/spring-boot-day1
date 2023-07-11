@@ -7,8 +7,11 @@ import java.util.List;
 
 @Service
 public class MemberService {
-    public List<Member> findAll(){
-        return Store.members;
+    public List<MemberResponse> findAll(){
+        return Store.members
+                .stream()
+                .map(MemberResponse::new)
+                .toList();
     }
     public Member findById(Integer id){
         for (int i = 0; i < Store.members.size(); i++) {
