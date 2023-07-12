@@ -32,9 +32,12 @@ public class HobbyService {
         new MemberHobby(member, hobby);
     }
 
-//    public List<HobbyResponse> findByLikeName(String name){
-//
-//    }
+    public List<HobbyResponse> findByLikeName(String name){
+            return Store.hobbies.stream()
+                    .filter(h -> h.getName().contains(name))
+                    .map(h -> new HobbyResponse(h))
+                    .toList();
+    }
 
 
 }
